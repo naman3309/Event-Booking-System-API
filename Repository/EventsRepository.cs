@@ -24,10 +24,10 @@ namespace Event_Booking_System_API.Repository
             return element;
         }
 
-        public async Task<int> GetEventIdByName(string name)
+        public async Task<Events> GetEventIdByName(string name)
         {
-            var res = await _context.Events.Where(e => EF.Functions.Like(e.EventName, $"%{name}%")).Select(e=>e.Id).FirstOrDefaultAsync();
-            return res;
+            var res = await _context.Events.Where(e => EF.Functions.Like(e.EventName, $"%{name}%")).Select(e=>e).FirstOrDefaultAsync();
+            return res ;
         }
         
         public async Task<int> Get_seats_left_by_Id(int id)
@@ -68,6 +68,14 @@ namespace Event_Booking_System_API.Repository
             }
 
         }
+        
+        public async Task Delete_Event(int id)
+        {
+            var _event = new Events() { Id = id };
+            _context.Events.Remove(_event);
+            await _context.SaveChangesAsync();
+        }
+
 
 
     }

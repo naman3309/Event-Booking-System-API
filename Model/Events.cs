@@ -18,6 +18,7 @@
         public DateOnly EventDate { get; set; }
         public TimeOnly EventTime { get; set; }
         public List<Attendees> attendees { get; set; }
+        public int Ticket_Price { get; set; }
 
     }
 }
