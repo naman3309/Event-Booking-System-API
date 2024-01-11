@@ -1,6 +1,6 @@
-﻿using Azure;
-using Event_Booking_System_API.Model;
+﻿using Event_Booking_System_API.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace Event_Booking_System_API.Repository
 {
@@ -59,7 +59,7 @@ namespace Event_Booking_System_API.Repository
             return e.Id;
         }
 
-        public async Task Update_event_details(int id,JsonPatchDocument body)
+        public async Task Update_event_details(int id, JsonPatchDocument body)
         {
             var e = await _context.Events.FindAsync(id);
             if(e!= null) {
