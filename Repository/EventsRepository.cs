@@ -33,7 +33,7 @@ namespace Event_Booking_System_API.Repository
         public async Task<int> Get_seats_left_by_Id(int id)
         {
             var res = await _context.Events.FindAsync(id);
-            return res.Totalseats;
+            return res.Totalseats-res.attendees.Count;
         }
 
         public async Task<DateTime> Get_Date_Time_by_Id(int id)
@@ -51,7 +51,6 @@ namespace Event_Booking_System_API.Repository
                 EventTime = _event.EventTime,
                 EventType = _event.EventType,
                 EventVenue = _event.EventVenue,
-                attendees = _event.attendees,
                 Totalseats = _event.Totalseats
             };
             _context.Events.Add(e);
@@ -76,7 +75,13 @@ namespace Event_Booking_System_API.Repository
             await _context.SaveChangesAsync();
         }
 
+        public async Task<int> Get_Ticket_Price(int id)
+        {
+            var _event = await _context.Events.FindAsync(id);
+            if (_event != null && _event.Ticket_Price>=0) { return _event.Ticket_Price; }
+            return -1;
+        }
 
-
+        
     }
 }

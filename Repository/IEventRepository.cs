@@ -14,5 +14,6 @@ namespace Event_Booking_System_API.Repository
 
         Task Update_event_details(int id, JsonPatchDocument body);
         Task Delete_Event(int id);
+        Task<int> Get_Ticket_Price(int id);
     }
 }
