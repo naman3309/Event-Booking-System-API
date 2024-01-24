@@ -16,7 +16,7 @@
         public int Totalseats { get; set; }
         public string EventVenue {  get; set; }
         public DateOnly EventDate { get; set; }
-        public TimeOnly EventTime { get; set; }
+        public string EventTime { get; set; }
         public List<Attendees> attendees { get; set; }
         public int Ticket_Price { get; set; }
 

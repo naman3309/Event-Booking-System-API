@@ -39,7 +39,7 @@ namespace Event_Booking_System_API.Repository
         public async Task<DateTime> Get_Date_Time_by_Id(int id)
         {
             var res = await _context.Events.FindAsync(id);
-            return new DateTime(res.EventDate, res.EventTime);
+            return new DateTime(res.EventDate, TimeOnly.Parse(res.EventTime));
         }
         
         public async Task<int> AddEvent(Events _event){
@@ -51,7 +51,8 @@ namespace Event_Booking_System_API.Repository
                 EventTime = _event.EventTime,
                 EventType = _event.EventType,
                 EventVenue = _event.EventVenue,
-                Totalseats = _event.Totalseats
+                Totalseats = _event.Totalseats,
+                Ticket_Price = _event.Ticket_Price
             };
             _context.Events.Add(e);
             await _context.SaveChangesAsync();

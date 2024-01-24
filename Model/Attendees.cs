@@ -1,4 +1,6 @@
-﻿namespace Event_Booking_System_API.Model
+﻿using Microsoft.VisualBasic;
+
+namespace Event_Booking_System_API.Model
 {
     public enum Gender
     {
@@ -11,7 +13,6 @@
         public int age { get; set; }
         public Gender gender { get; set; }
         public Events events { get; set; }
-
 
     }
 
