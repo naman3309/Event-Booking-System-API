@@ -33,7 +33,7 @@ namespace Event_Booking_System_API.Repository
         public async Task<int> Get_seats_left_by_Id(int id)
         {
             var res = await _context.Events.FindAsync(id);
-            return res.Totalseats-res.attendees.Count;
+            return res.Totalseats-res.Ticket_Sold_Quantity;
         }
 
         public async Task<DateTime> Get_Date_Time_by_Id(int id)

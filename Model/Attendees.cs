@@ -12,7 +12,8 @@ namespace Event_Booking_System_API.Model
         public string Name { get; set; }
         public int age { get; set; }
         public Gender gender { get; set; }
-        public Events events { get; set; }
+        public int events_id { get; set; }
+        public int Ticket_no { get; set; }
 
     }
 

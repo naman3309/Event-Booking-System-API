@@ -19,13 +19,15 @@ namespace Event_Booking_System_API.Repository
         }
         public async Task<List<Attendees>> GetAllAttendeesByEvent(int event_id)
         {
-            var res = await _context.Attendees.Where(e=>e.events.Id==event_id).ToListAsync<Attendees>();
+            var res = await _context.Attendees.Where(e=>e.events_id==event_id).ToListAsync<Attendees>();
             return res;
         }
         public async Task AddAttendee(Attendees attendee)
         {
-            attendee.events.attendees.Add(attendee);
+
             _context.Attendees.Add(attendee);
+            var tsq = await _context.Events.FindAsync(attendee.events_id);
+            tsq.Ticket_Sold_Quantity += 1;
             await _context.SaveChangesAsync();
         }
         public async Task UpdateAttendee_ByPatch(int id, JsonPatchDocument attendee)
@@ -46,8 +48,8 @@ namespace Event_Booking_System_API.Repository
         public async Task Delete_Attendee(int id)
         {
             var a = await _context.Attendees.FindAsync(id);
-            a.events.attendees.Remove(a);
-            _context.Attendees.Remove(a);
+            var tsq = await _context.Events.FindAsync(a.events_id);
+            tsq.Ticket_Sold_Quantity -= 1;
             await _context.SaveChangesAsync();
         }
     }
