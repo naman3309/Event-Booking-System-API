@@ -4,6 +4,7 @@ using Event_Booking_System_API;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Event_Booking_System_API.Migrations
 {
     [DbContext(typeof(APIDbContext))]
-    partial class APIDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240130154137_booking-model-added")]
+    partial class bookingmodeladded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,25 +52,6 @@ namespace Event_Booking_System_API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Attendees");
-                });
-
-            modelBuilder.Entity("Event_Booking_System_API.Model.Booking", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Attendee_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Event_Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Bookings");
                 });
 
             modelBuilder.Entity("Event_Booking_System_API.Model.Events", b =>

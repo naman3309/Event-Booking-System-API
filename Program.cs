@@ -12,6 +12,7 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IEventRepository,EventsRepository>();
+builder.Services.AddTransient<IAttendeesRepository,AttendeesRepository>();
 builder.Services.AddDbContext<APIDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Event_Mgt_DB")));
 
 var app = builder.Build();
